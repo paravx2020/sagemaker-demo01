@@ -36,3 +36,12 @@ resource "aws_iam_role" "lambda" {
 ## The below permissions to be added to the role
 ## 1. AWSLambdaBasicExecutionRole
 ## 2. AmazonSageMakerFullAccess
+resource "aws_iam_role_policy_attachment" "lambda" {
+  for_each = toset([
+    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole", 
+    "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
+  ])
+
+  role       = aws_iam_role.lambda.name
+  policy_arn = each.value
+}
