@@ -8,7 +8,7 @@ resource "aws_lambda_function" "lambda" {
   filename = "../scripts/index.zip"
   function_name = "${var.name_prefix}-${var.service}-lambda-function"
   role = aws_iam_role.lambda.arn
-  handler = "lambda_handler"
+  handler = "lambda_pkg.lambda_handler"  ## format:- <python program name>.<lambda_handler>
   runtime = "python3.12"
   source_code_hash = data.archive_file.lambda.output_base64sha256
   depends_on = [
