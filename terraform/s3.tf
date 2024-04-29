@@ -1,9 +1,9 @@
 resource "aws_s3_bucket" "b" {
-  bucket = "sagemaker-paravx1-demo-bucket"
+  bucket = "${var.name_prefix}-${var.service}-demo-bucket"
 #  acl    = "private"
 
   tags = {
-    Name        = "sagemaker demo bucket"
+    Name        = "${var.name_prefix}-${var.service}-demo-bucket"
     Environment = "Dev"
   }
 }
