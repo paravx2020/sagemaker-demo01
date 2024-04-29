@@ -6,7 +6,7 @@ data "archive_file" "lambda" {
 
 resource "aws_lambda_function" "lambda" {
   filename = "index.zip"
-  function_name = "paravx1-sagemaker-LambdaFunction"
+  function_name = "${var.name_prefix}-${var.service}-lambda-function"
   role = aws_iam_role.lambda.arn
   handler = "lambda_handler"
   runtime = "python3.12"
@@ -14,7 +14,7 @@ resource "aws_lambda_function" "lambda" {
 }
 
 resource "aws_iam_role" "lambda" {
-  name = "paravx1-sagemaker-lambda-role"
+  name = "${var.name_prefix}-${var.service}-lambda-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
