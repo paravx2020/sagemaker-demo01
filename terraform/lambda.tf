@@ -32,3 +32,7 @@ resource "aws_iam_role" "lambda" {
   ]
 })
 }
+
+## The below permissions to be added to teh role
+## 1. AWSLambdaBasicExecutionRole
+## 2. AmazonSageMakerFullAccess
